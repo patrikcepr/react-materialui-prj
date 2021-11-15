@@ -2,26 +2,44 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
+  AppBar,
   Button,
   ButtonGroup,
   Checkbox,
+  Container,
   FormControlLabel,
+  IconButton,
   TextField,
+  Toolbar,
+  Typography,
+  Paper,
+  Grid,
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Save, Delete } from '@mui/icons-material';
-import { green, orange } from '@mui/material/colors';
+import { Save, Delete, Menu } from '@mui/icons-material';
+// import { green, orange } from '@mui/material/colors';
 import { makeStyles } from '@mui/styles';
 
+//Typography
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: green[600],
-    },
-    secondary: {
-      main: orange[600],
+  typography: {
+    h1: {
+      fontSize: 64,
     },
   },
+  // palette: {
+  //   primary: {
+  //     main: green[600],
+  //   },
+  //   secondary: {
+  //     main: orange[600],
+  //   },
+  // },
 });
 
 const useStyles = makeStyles({
@@ -68,30 +86,56 @@ const CheckBoxMine = () => {
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <ButtonStyled />
-          <TextField
-            variant='standard'
-            color='primary'
-            type='e-mail'
-            label='E-mail'
-            placeholder='place@hold.er'
-          />
-          <CheckBoxMine color='primary' />
-          <ButtonGroup
-            variant='contained'
-            size='large'
-            color='secondary'
-            style={{ fontSize: 20 }}
-            href='#'
-          >
-            <Button startIcon={<Save />}>Save</Button>
-            <Button startIcon={<Delete />}>Discard</Button>
-          </ButtonGroup>
-        </header>
-      </div>
+      <Container maxWidth='sm'>
+        <div className='App'>
+          <header className='App-header'>
+            <AppBar color='secondary'>
+              <Toolbar>
+                <IconButton>
+                  <Menu />
+                </IconButton>
+                <Typography variant='h5'>Material UI Theming</Typography>
+                <Button style={{ color: '#000000de', fontSize: '1.5rem' }}>
+                  Login
+                </Button>
+              </Toolbar>
+            </AppBar>
+            <Typography variant='h1'>Welcome to Material UI</Typography>
+            <Typography variant='h4'>Learn how to use Material UI</Typography>
+            <img src={logo} className='App-logo' alt='logo' />
+            <ButtonStyled />
+            <Grid container spacing={2} justifyContent='center'>
+              <Grid item xs={12} sm={3}>
+                <Paper style={{ height: '75px', width: '100%' }} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Paper style={{ height: '75px', width: '100%' }} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Paper style={{ height: '75px', width: '100%' }} />
+              </Grid>
+            </Grid>
+            <TextField
+              variant='standard'
+              color='primary'
+              type='e-mail'
+              label='E-mail'
+              placeholder='place@hold.er'
+            />
+            <CheckBoxMine color='primary' />
+            <ButtonGroup
+              variant='contained'
+              size='large'
+              color='secondary'
+              style={{ fontSize: 20 }}
+              href='#'
+            >
+              <Button startIcon={<Save />}>Save</Button>
+              <Button startIcon={<Delete />}>Discard</Button>
+            </ButtonGroup>
+          </header>
+        </div>
+      </Container>
     </ThemeProvider>
   );
 }
